@@ -1,16 +1,12 @@
-const fs = require("fs");
+import fs = require("fs");
 
-let allText: string = fs.readFileSync(
-  "C:/Users/jan.kister/OneDrive/projects/advent-of-code/1-input.txt",
-  "utf8"
-);
+let allText: string = fs.readFileSync("./1-input.txt", "utf8");
 
-console.log(allText);
 let input_strings = allText.replace(/\r\n/g, " ").split(" ");
 let input = input_strings.map((x) => parseInt(x));
 console.log(input);
 
-const result = input.reduce((acc, cur, index, array): any => {
+const reducer = (acc, cur, index, array): number => {
   if (index === 0) {
     return 0;
   }
@@ -18,6 +14,21 @@ const result = input.reduce((acc, cur, index, array): any => {
     acc++;
   }
   return acc;
-}, 0);
+};
 
-console.log(result);
+const result = input.reduce(reducer, 0);
+
+console.log(`Part one: ${result}`);
+
+const createMeasurementWindows = (input: number[]): number[] => {
+  const windows = [];
+  for (let i = 2; i < input.length; i++) {
+    let windowSum = input[i - 2] + input[i - 1] + input[i];
+    windows.push(windowSum);
+  }
+  return windows;
+};
+
+const windows = createMeasurementWindows(input);
+const result2 = windows.reduce(reducer, 0);
+console.log(`Part two: ${result2}`);
