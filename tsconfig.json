@@ -1,5 +1,5 @@
 {
-  "compilerOptions": {"noImplicitAny": false},
+  "compilerOptions": {"noImplicitAny": false, "target": "es5", "module": "commonjs", "outDir": "out", "sourceMap": true},
   "types": ["node"],
-  "typeRoots": [ "../node_modules/@types" ]
+  "typeRoots": [ "../node_modules/@types" ],
 }
